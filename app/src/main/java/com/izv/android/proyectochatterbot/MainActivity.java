@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
                             mitts.setLanguage(loc);
 
                         }else{
-                            System.out.println("ERROOOOOOOOOOOOOR");
+                            Toast.makeText(getApplicationContext(),"No se puede reproducir",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -121,28 +121,12 @@ public class MainActivity extends Activity {
                     };
 
                     thread.start();
-                    escribir(s, respuesta);
+                    escribir(s);
 
-//-------------------------------------------------------------------------
-                    //new hacerConexion().execute();
-                   /* String respuesta = "";
-                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    //etconver.setText(result.get(0));
-
-                    try{
-                        String s = result.get(0);
-                        etconver.setText(s);
-                        //respuesta = bot1session.think(s);
-                        //respuesta = new hacerConexion().execute();
-                        etconver.setText(etconver.getText()+"\n"+s+"\n"+respuesta);
-                        System.out.println("RESPUESTAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+respuesta);
-
-
-                    }catch(Exception e){
-                        System.out.println("EXCEPTIOOOOOOOOOOOOOOON "+e);
-                    }
-
-                    hablaMovil(respuesta);*/
+                }else{
+                    Intent intent= new Intent();
+                    intent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+                    startActivity(intent);
                 }
                 break;
             }
@@ -180,7 +164,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    public void escribir(String s, String resp){
+    public void escribir(String s){
         if(respuesta == null){
             respuesta = "";
         }
